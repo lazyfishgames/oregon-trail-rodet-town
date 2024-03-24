@@ -18,8 +18,9 @@ let gameData = {
 };
 
 // Function to start the game
+// Function to start the game
 function startGame() {
-    let playerNameInput = document.getElementById("player-name-input").value.trim();
+    let playerNameInput = document.getElementById("player-name-input").value.trim(); // Trim the input value
     if (playerNameInput === "") {
         alert("Please enter your name.");
         return;
@@ -30,6 +31,12 @@ function startGame() {
     playBackgroundMusic();
     init();
 }
+
+// Add event listener to the "Start Game" button
+document.addEventListener("DOMContentLoaded", function() {
+    let startButton = document.getElementById("start-button");
+    startButton.addEventListener("click", startGame);
+});
 
 // Function to play background music
 function playBackgroundMusic() {
