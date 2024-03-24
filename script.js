@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const startButton = document.getElementById('start-button');
     const playerNameInput = document.getElementById('player-name-input');
     const gameContainer = document.getElementById('game-container');
+    const mainContent = document.getElementById('main-content');
     const townInfo = document.getElementById('town-info');
     const playerInfo = document.getElementById('player-info');
     const eventsLog = document.getElementById('events-log');
@@ -14,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let gameData = {
         town: {
-            name: "Rodet Town",
+            name: "Boom Town",
             population: 100,
             resources: {
                 gold: 100,
@@ -73,30 +74,44 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     exploreButton.addEventListener('click', function() {
+        // Hide main content and show explore page
+        mainContent.style.display = "none";
+        // Simulate exploring
         let event = "You explored the area and found some resources.";
         gameData.eventsLog.push(event);
         updateEventsLog();
     });
 
     tradeButton.addEventListener('click', function() {
+        // Hide main content and show trade page
+        mainContent.style.display = "none";
+      
+        // Simulate trading
         let event = "You traded with another settlement.";
         gameData.eventsLog.push(event);
         updateEventsLog();
     });
 
     restButton.addEventListener('click', function() {
+        // Simulate resting
         let event = "You rested and regained some health.";
         gameData.eventsLog.push(event);
         updateEventsLog();
     });
 
     visitBankButton.addEventListener('click', function() {
+        // Simulate visiting bank
         let event = "You visited the bank.";
         gameData.eventsLog.push(event);
         updateEventsLog();
     });
 
     visitMarketButton.addEventListener('click', function() {
+        // Hide main content and show market page
+        mainContent.style.display = "none";
+        document.getElementById('market-page').style.display = "block";
+
+        // Simulate visiting market
         let event = "You visited the market.";
         gameData.eventsLog.push(event);
         updateEventsLog();
@@ -104,8 +119,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function updateEventsLog() {
         eventsLog.innerHTML = "<h3>Events Log</h3>";
-        gameData.eventsLog.forEach(event => {
-            eventsLog.innerHTML += `<p>${event}</p>`;
-        });
-    }
-});
+        gameData
