@@ -1,4 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
+    //ids for pages
+    const goldCount = document.getElementById('gold-amount');
+    const buyMeat1 = document.getElementById('buy-meat-1');
+    const buyMeat16 = document.getElementById('buy-meat-16');
+    const buyBerry1 = document.getElementById('buy-berry-1');
+    const buyBerry16 = document.getElementById('buy-berry-16');
+    const buySalmon1 = document.getElementById('buy-salmon-1');
+    const buySalmon16 = document.getElementById('buy-salmon-16');
+    //ids for game
     const optionButtons = document.getElementById('options');
     const startButton = document.getElementById('start-button');
     const playerNameInput = document.getElementById('player-name-input');
