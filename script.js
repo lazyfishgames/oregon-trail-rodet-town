@@ -45,50 +45,52 @@ document.addEventListener("DOMContentLoaded", function() {
         init();
     });
 
-    function playBackgroundMusic() {
-        var tag = document.createElement('script');
-tag.src = 'https://www.youtube.com/iframe_api';
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+   function playBackgroundMusic() {
+    // Load YouTube Player API asynchronously
+    var tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// YouTube Video ID
-var videoId = 'https://youtu.be/UKTy-ivDUWc?si=m0B2EQQAINktdY6T'; // Replace with your YouTube video ID
+    // YouTube Video ID
+    var videoId = 'UKTy-ivDUWc'; // Replace with your YouTube video ID
 
-// YouTube Audio Player
-var audioPlayer;
+    // YouTube Audio Player
+    var audioPlayer;
 
-// Function called when YouTube API is ready
-function onYouTubeIframeAPIReady() {
-    audioPlayer = new YT.Player('audioPlayer', {
-        height: '0',
-        width: '0',
-        videoId: videoId,
-        playerVars: {
-            autoplay: 1,
-            loop: 1,
-            mute: 1,
-            controls: 0 // Remove controls
-        },
-        events: {
-            'onReady': onAudioPlayerReady,
-            'onStateChange': onAudioPlayerStateChange
-        }
-    });
-}
-
-// Function called when audio player is ready
-function onAudioPlayerReady(event) {
-    // Audio player is ready, it will automatically start playing
-}
-
-// Function called when audio player's state changes
-function onAudioPlayerStateChange(event) {
-    // You can do something when the audio player's state changes
-}
-        let backgroundMusic = document.getElementById("background-music");
-        backgroundMusic.volume = 0.3; // Adjust volume as needed
-        backgroundMusic.play();
+    // Function called when YouTube API is ready
+    function onYouTubeIframeAPIReady() {
+        audioPlayer = new YT.Player('audioPlayer', {
+            height: '0',
+            width: '0',
+            videoId: videoId,
+            playerVars: {
+                autoplay: 1,
+                loop: 1,
+                mute: 1,
+                controls: 0 // Remove controls
+            },
+            events: {
+                'onReady': onAudioPlayerReady,
+                'onStateChange': onAudioPlayerStateChange
+            }
+        });
     }
+
+    // Function called when audio player is ready
+    function onAudioPlayerReady(event) {
+        // Audio player is ready, it will automatically start playing
+    }
+
+    // Function called when audio player's state changes
+    function onAudioPlayerStateChange(event) {
+        // You can do something when the audio player's state changes
+    }
+}
+
+// Call the function to play background music
+playBackgroundMusic();
+
 
     function init() {
         displayTownInfo();
