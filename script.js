@@ -1,10 +1,8 @@
-document.addEventListener("DOMContentLoaded", function() { 
-    //ids for game
-    const optionButtons = document.getElementById('options');
+document.addEventListener("DOMContentLoaded", function() {
+    // Game elements
     const startButton = document.getElementById('start-button');
     const playerNameInput = document.getElementById('player-name-input');
     const gameContainer = document.getElementById('game-container');
-    const mainContent = document.getElementById('main-content');
     const townInfo = document.getElementById('town-info');
     const playerInfo = document.getElementById('player-info');
     const eventsLog = document.getElementById('events-log');
@@ -14,6 +12,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const visitBankButton = document.getElementById('visit-bank-button');
     const visitMarketButton = document.getElementById('visit-market-button');
 
+    // Background music
+    const backgroundMusicVideoId = 'UKTy-ivDUWc'; // Replace with your YouTube video ID
+
+    // Game data
     let gameData = {
         town: {
             name: "Rodet Town",
@@ -32,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
         eventsLog: []
     };
 
+    // Event listener for start button
     startButton.addEventListener('click', function() {
         let playerName = playerNameInput.value.trim();
         if (playerName === "") {
@@ -45,25 +48,23 @@ document.addEventListener("DOMContentLoaded", function() {
         init();
     });
 
-   function playBackgroundMusic() {
-    // Load YouTube Player API asynchronously
-    var tag = document.createElement('script');
-    tag.src = 'https://www.youtube.com/iframe_api';
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    // Function to play background music
+    function playBackgroundMusic() {
+        // Load YouTube Player API asynchronously
+        var tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
 
-    // YouTube Video ID
-    var videoId = 'UKTy-ivDUWc'; // Replace with your YouTube video ID
-
-    // YouTube Audio Player
+    // YouTube API callbacks
     var audioPlayer;
 
-    // Function called when YouTube API is ready
-    function onYouTubeIframeAPIReady() {
+    window.onYouTubeIframeAPIReady = function() {
         audioPlayer = new YT.Player('audioPlayer', {
             height: '0',
             width: '0',
-            videoId: videoId,
+            videoId: backgroundMusicVideoId,
             playerVars: {
                 autoplay: 1,
                 loop: 1,
@@ -77,26 +78,21 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // Function called when audio player is ready
     function onAudioPlayerReady(event) {
         // Audio player is ready, it will automatically start playing
     }
 
-    // Function called when audio player's state changes
     function onAudioPlayerStateChange(event) {
         // You can do something when the audio player's state changes
     }
-}
 
-// Call the function to play background music
-playBackgroundMusic();
-
-
+    // Initialize the game
     function init() {
         displayTownInfo();
         displayPlayerInfo();
     }
 
+    // Display town information
     function displayTownInfo() {
         townInfo.innerHTML = `
             <h2>${gameData.town.name}</h2>
@@ -107,6 +103,7 @@ playBackgroundMusic();
         `;
     }
 
+    // Display player information
     function displayPlayerInfo() {
         playerInfo.innerHTML = `
             <h2>${gameData.player.name}</h2>
@@ -115,61 +112,29 @@ playBackgroundMusic();
         `;
     }
 
-     const gameContainer = document.getElementById('game-container');
-    const eventsLog = document.getElementById('events-log');
-    const sidePanel = document.getElementById('side-panel');
-
-    let currentPage = 'game';
-
+    // Event listeners for game actions
     exploreButton.addEventListener('click', function() {
-        currentPage = 'explore';
-        displayPage();
+        logEvent("You are exploring...");
     });
 
     tradeButton.addEventListener('click', function() {
-        currentPage = 'trade';
-        displayPage();
+        logEvent("You are trading...");
     });
 
     restButton.addEventListener('click', function() {
-        currentPage = 'rest';
-        displayPage();
+        logEvent("You are resting...");
     });
 
     visitBankButton.addEventListener('click', function() {
-        currentPage = 'bank';
-        displayPage();
+        logEvent("You are visiting the bank...");
     });
 
     visitMarketButton.addEventListener('click', function() {
-        currentPage = 'market';
-        displayPage();
+        logEvent("You are visiting the market...");
     });
 
-    function displayPage() {
-        gameContainer.style.display = 'none';
-        sidePanel.style.display = 'block';
-        eventsLog.innerHTML = "<h3>Events Log</h3>";
-        switch (currentPage) {
-            case 'explore':
-                eventsLog.innerHTML += "<p>You are exploring...</p>";
-                break;
-            case 'trade':
-                eventsLog.innerHTML += "<p>You are trading...</p>";
-                break;
-            case 'rest':
-                eventsLog.innerHTML += "<p>You are resting...</p>";
-                break;
-            case 'bank':
-                eventsLog.innerHTML += "<p>You are visiting the bank...</p>";
-                break;
-            case 'market':
-                eventsLog.innerHTML += "<p>You are visiting the market...</p>";
-                break;
-            default:
-                gameContainer.style.display = 'block';
-                sidePanel.style.display = 'none';
-                break;
-        }
+    // Log an event to the events log
+    function logEvent(eventMessage) {
+        eventsLog.innerHTML += `<p>${eventMessage}</p>`;
     }
 });
