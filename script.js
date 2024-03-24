@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() { 
     //ids for game
+    const bgMusic = document.getElementById('background-music');
     const optionButtons = document.getElementById('options');
     const startButton = document.getElementById('start-button');
     const playerNameInput = document.getElementById('player-name-input');
@@ -16,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let gameData = {
         town: {
-            name: "Boom Town",
+            name: "Rodet Town",
             population: 100,
             resources: {
                 gold: 100,
