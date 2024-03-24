@@ -21,10 +21,17 @@ let gameData = {
 // Function to start the game
 function startGame() {
     let playerNameInput = document.getElementById("player-name-input").value.trim(); // Trim the input value
-    if (playerNameInput === "") {
-        alert("Please enter your name.");
-        return;
-    }
+
+
+        const playerName = document.getElementById('player-name-input').value;
+        const content = document.getElementById('player-name-field').value;
+
+        if (playerName.trim() === '' || content.trim() === '') {
+            alert('Please fill in all fields');
+            return;
+        }
+
+    
     gameData.player.name = playerNameInput;
     document.getElementById("start-screen").style.display = "none";
     document.getElementById("game-container").style.display = "block";
