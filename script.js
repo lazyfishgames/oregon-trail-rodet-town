@@ -1,12 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
-    //ids for pages
-    const goldCount = document.getElementById('gold-amount');
-    const buyMeat1 = document.getElementById('buy-meat-1');
-    const buyMeat16 = document.getElementById('buy-meat-16');
-    const buyBerry1 = document.getElementById('buy-berry-1');
-    const buyBerry16 = document.getElementById('buy-berry-16');
-    const buySalmon1 = document.getElementById('buy-salmon-1');
-    const buySalmon16 = document.getElementById('buy-salmon-16');
+document.addEventListener("DOMContentLoaded", function() { 
     //ids for game
     const optionButtons = document.getElementById('options');
     const startButton = document.getElementById('start-button');
@@ -82,50 +74,61 @@ document.addEventListener("DOMContentLoaded", function() {
         `;
     }
 
+     const gameContainer = document.getElementById('game-container');
+    const eventsLog = document.getElementById('events-log');
+    const sidePanel = document.getElementById('side-panel');
+
+    let currentPage = 'game';
+
     exploreButton.addEventListener('click', function() {
-        // Hide main content and show explore page
-        mainContent.style.display = "none";
-        // Simulate exploring
-        let event = "You explored the area and found some resources.";
-        gameData.eventsLog.push(event);
-        updateEventsLog();
+        currentPage = 'explore';
+        displayPage();
     });
 
     tradeButton.addEventListener('click', function() {
-        // Hide main content and show trade page
-        mainContent.style.display = "none";
-      
-        // Simulate trading
-        let event = "You traded with another settlement.";
-        gameData.eventsLog.push(event);
-        updateEventsLog();
+        currentPage = 'trade';
+        displayPage();
     });
 
     restButton.addEventListener('click', function() {
-        // Simulate resting
-        let event = "You rested and regained some health.";
-        gameData.eventsLog.push(event);
-        updateEventsLog();
+        currentPage = 'rest';
+        displayPage();
     });
 
     visitBankButton.addEventListener('click', function() {
-        // Simulate visiting bank
-        let event = "You visited the bank.";
-        gameData.eventsLog.push(event);
-        updateEventsLog();
+        currentPage = 'bank';
+        displayPage();
     });
 
     visitMarketButton.addEventListener('click', function() {
-        // Hide main content and show market page
-        mainContent.style.display = "none";
-        document.getElementById('market-page').style.display = "block";
-
-        // Simulate visiting market
-        let event = "You visited the market.";
-        gameData.eventsLog.push(event);
-        updateEventsLog();
+        currentPage = 'market';
+        displayPage();
     });
 
-    function updateEventsLog() {
+    function displayPage() {
+        gameContainer.style.display = 'none';
+        sidePanel.style.display = 'block';
         eventsLog.innerHTML = "<h3>Events Log</h3>";
-        gameData
+        switch (currentPage) {
+            case 'explore':
+                eventsLog.innerHTML += "<p>You are exploring...</p>";
+                break;
+            case 'trade':
+                eventsLog.innerHTML += "<p>You are trading...</p>";
+                break;
+            case 'rest':
+                eventsLog.innerHTML += "<p>You are resting...</p>";
+                break;
+            case 'bank':
+                eventsLog.innerHTML += "<p>You are visiting the bank...</p>";
+                break;
+            case 'market':
+                eventsLog.innerHTML += "<p>You are visiting the market...</p>";
+                break;
+            default:
+                gameContainer.style.display = 'block';
+                sidePanel.style.display = 'none';
+                break;
+        }
+    }
+});
