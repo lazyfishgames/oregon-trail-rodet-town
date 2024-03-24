@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oregon Trail: Rodet Town</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="start-screen">
+        <h1>Oregon Trail: Rodet Town</h1>
+        <button onclick="startGame()">Start Game</button>
+    </div>
+
+    <div id="game-container" style="display: none;">
+        <div id="town-info">
+            <!-- Display town information -->
+        </div>
+        <div id="player-info">
+            <!-- Display player information -->
+        </div>
+        <div id="events-log">
+            <!-- Display events log -->
+        </div>
+        <div id="options">
+            <!-- Display player options -->
+            <button onclick="explore()">Explore</button>
+            <button onclick="trade()">Trade</button>
+            <button onclick="rest()">Rest</button>
+            <button onclick="visitBank()">Visit Bank</button>
+            <button onclick="visitMarket()">Visit Market</button>
+        </div>
+    </div>
+
+    <audio id="background-music" autoplay loop>
+        <source src="https://youtu.be/WDdZLk7pRfI?si=QdnCWVfoOmaWSj-X" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
