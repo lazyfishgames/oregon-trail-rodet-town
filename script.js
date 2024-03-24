@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var audioPlayer;
 
     window.onYouTubeIframeAPIReady = function() {
-        audioPlayer = new YT.Player('audioPlayer', {
+        audioPlayer = new YT.Player('background-music', {
             height: '0',
             width: '0',
             videoId: backgroundMusicVideoId,
